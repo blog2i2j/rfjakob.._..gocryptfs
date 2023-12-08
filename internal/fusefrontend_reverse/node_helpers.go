@@ -115,6 +115,7 @@ func (n *Node) isRoot() bool {
 	return &rn.Node == n
 }
 
+// Handle LOOKUP gocryptfs.longname.*.name
 func (n *Node) lookupLongnameName(ctx context.Context, nameFile string, out *fuse.EntryOut) (ch *fs.Inode, errno syscall.Errno) {
 	d, errno := n.prepareAtSyscall("")
 	if errno != 0 {

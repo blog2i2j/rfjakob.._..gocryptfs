@@ -92,7 +92,7 @@ func doTestFileHoleCopy(t *testing.T, name string, writeOffsets []int64) {
 		// (looking at "filefrag -v", it seems like ext4 needs 4kB extra once
 		//  you have >=4 extents)
 		if st.Blocks != st0.Blocks && st.Blocks != st0.Blocks-8 && st.Blocks != st0.Blocks+8 {
-			t.Errorf("size changed: st0.Blocks=%d st%d.Blocks=%d", st0.Blocks, i, st.Blocks)
+			t.Errorf("error: size changed: st0.Blocks=%d st%d.Blocks=%d", st0.Blocks, i, st.Blocks)
 		}
 	}
 
@@ -123,7 +123,7 @@ func doTestFileHoleCopy(t *testing.T, name string, writeOffsets []int64) {
 	}
 }
 
-// TestFileHoleCopy creates a sparse times, copies it a few times, and check if
+// TestFileHoleCopy creates a sparse file, copies it a few times, and checks if
 // the copies are the same (including the location of holes and data sections).
 //
 // The test runs with -plaintextnames because that makes it easier to manipulate
